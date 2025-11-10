@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import DownloadSection from "@/components/sections/DownloadSection";
 import FeaturesSection from "@/components/sections/FeaturesSection";
@@ -40,6 +41,7 @@ export default function Home() {
       <ShopSection id="stores" />
       <FeaturesSection id="features" />
       <DownloadSection id="transparency" />
+      <Footer />
     </>
   );
 }
