@@ -26,7 +26,6 @@ export default function FeaturesSection({ id }: SectionProps) {
               className="absolute right-0"
             />
           </div>
-
           <div className="flex flex-col items-end">
             {[
               "تجربة مستخدم مميزة بتصميم شرعي جميل",
@@ -54,16 +53,25 @@ export default function FeaturesSection({ id }: SectionProps) {
             </button>
           </div>
         </div>
-
-        <div className="order-2 xl:order-1 h-[615px] max-w-full relative">
-          <Image
-            src="/application-properties.png"
-            alt="features"
-            placeholder="blur"
-            blurDataURL="/application-properties.png"
-            fill
-            className="object-contain xl:object-left"
-          />
+        <div className="order-2 xl:order-1 max-w-full relative mx-auto hidden sm:block">
+          <div className="w-[393px] h-[600px] relative overflow-hidden">
+            <Image
+              src="/application-properties.png"
+              alt="features"
+              placeholder="blur"
+              blurDataURL="/application-properties.png"
+              fill
+              className="object-contain xl:object-left"
+            />
+            <div className="img-box">
+              <div className="rotate-[30deg] mt-10 text-gray-700 relative z-20">
+                <h2 className="text-xl font-bold mb-2">التسوق بكل سهولة</h2>
+                <p dir="rtl" className="text-lg opacity-90 max-w-md mx-auto">
+                  يمكنك التصفح الآن بكل سهولة عبر تطبيق <span className="font-bold">Shammal</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

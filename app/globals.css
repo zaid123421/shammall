@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+.img-box {
+  background-color: #38BA98;
+  position: absolute;
+  width: 60%;
+  height: 275px;
+  transform: rotate(-30deg);
+  bottom: -100px;
+  right: 0px;
+  border-top-left-radius: 50px;
+}
+
+.img-box::before {
+  content: "";
+  position: absolute;
+  background-color: rgb(255, 255, 255, 0.6);
+  z-index: 20;
+  right: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  top: -20px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 20px;
+}

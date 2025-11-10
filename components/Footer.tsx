@@ -1,16 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 
 export default function Footer() {
-
   return (
     <footer className="relative bg-[#1a1a1a]">
-
       <div className="flex flex-col items-center justify-center py-12">
-
         <Image
           src="/shammall.svg"
           alt="Logo"
@@ -32,10 +30,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <p dir="rtl" className="text-white/70 mt-5 font-medium px-5 text-center">شام مول جميع الحقوق محفوظة 2025 &copy;</p>
+        <p dir="rtl" className="text-white/70 mt-5 font-medium px-5 text-center">
+          شام مول جميع الحقوق محفوظة 2025 &copy;
+        </p>
 
+        <Link href="/privacy" target="_blank" className="text-[#38BA98] hover:underline mt-3 text-sm">
+          سياسة الخصوصية
+        </Link>
       </div>
-
     </footer>
   );
 }

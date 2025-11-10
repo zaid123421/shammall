@@ -5,10 +5,9 @@ import StoreCard from "../StoreCard";
 
 export default function HomeSection() {
   return (
-    <section className="relative container mx-auto w-full min-h-screen flex flex-col justify-center items-center text-center">
+    <section className="relative container mx-auto min-h-screen flex flex-col justify-center items-center text-center overflow-hidden">
 
-      {/* الخلفية الكبيرة */}
-      <div className="w-full h-full">
+      <div className="absolute inset-0 -z-10">
         <Image
           src="/home.webp"
           alt="home_image"
@@ -20,23 +19,24 @@ export default function HomeSection() {
         />
       </div>
 
-      {/* <div className="relative bg-red-500 flex justify-center items-center">
+      <div className="relative w-full max-w-[1000px] h-[300px] sm:h-[400px] md:h-[500px] flex justify-center items-center mt-10 md:mt-25 mx-auto">
         <Image
           src="/rectangle.png"
           alt="rectangle_image"
           placeholder="blur"
           blurDataURL="/rectangle.png"
-          width={800}
-          height={800}
-          className="object-cover"
+          width={1000}
+          height={500}
+          priority
+          className="object-cover w-full h-full rounded-[8px]"
         />
 
-        <div className="relative z-20 flex items-center justify-center py-5">
-          <p className="text-3xl md:text-[50px] font-bold text-white text-center px-4 md:px-0 break-words max-w-full md:max-w-[90%]">
+        <div className="absolute inset-0 flex items-center justify-center z-20">
+          <p className="text-lg sm:text-2xl md:text-[50px] font-bold text-white text-center px-4 break-words leading-[1.6] w-[90%] md:w-[800px] pb-[150px] md:pb-[300px]">
             كل الأسواق في مكان واحد بتجربة شرقية أصيلة
           </p>
         </div>
-      </div> */}
+      </div>
 
       <div className="flex flex-col sm:flex-row z-20 gap-5">
         <StoreCard
