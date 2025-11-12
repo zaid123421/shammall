@@ -21,7 +21,7 @@ export default function DownloadSection({ id }: SectionProps) {
         </p>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-16 mt-10">
+      {/* <div className="flex flex-col sm:flex-row gap-16 mt-10">
         <div className="flex flex-col items-center">
           <Image
             src="/qr.png"
@@ -54,12 +54,12 @@ export default function DownloadSection({ id }: SectionProps) {
             انضم إلى أكثر من 78 مليون متسوق حول العالم
           </span>
         </div>
-      </div>
+      </div> */}
 
       <div className="relative inline-block mt-10">
-        <div className="flex flex-col items-center gap-4 mt-4 mb-10 lg:hidden">
+        {/* <div className="flex flex-col items-center gap-4 mt-4 mb-10 lg:hidden"> */}
           {/* الكرت الأول */}
-          <div className="bg-white p-4 rounded-lg shadow-2xl flex gap-5 items-center w-[250px]">
+          {/* <div className="bg-white p-4 rounded-lg shadow-2xl flex gap-5 items-center w-[250px]">
             <div className="flex flex-col items-start">
               <span className="text-[20px] text-[#909090]">Monthly Stats</span>
               <span className="text-[20px] font-extrabold">+25%</span>
@@ -80,8 +80,8 @@ export default function DownloadSection({ id }: SectionProps) {
               <span className="text-[20px]">4.8</span>
               <span className="text-[20px] text-[#909090]">Satisfaction</span>
             </div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
 
         <Image
           src="/Download-our-app.png"
@@ -94,7 +94,7 @@ export default function DownloadSection({ id }: SectionProps) {
           loading="lazy"
         />
 
-        <div className="hidden lg:block">
+        {/* <div className="hidden lg:block">
           <div className="absolute top-65 -right-26 bg-white p-4 rounded-lg shadow-2xl flex gap-5 items-center">
             <div className="flex flex-col items-start">
               <span className="text-[20px] text-[#909090]">Monthly Stats</span>
@@ -117,7 +117,7 @@ export default function DownloadSection({ id }: SectionProps) {
               <span className="text-[20px] text-[#909090]">Satisfaction</span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="flex flex-col sm:flex-row z-20 gap-5">

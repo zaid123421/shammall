@@ -9,14 +9,9 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#1a1a1a]">
       <div className="flex flex-col items-center justify-center py-12">
-        <Image
-          src="/shammall.svg"
-          alt="Logo"
-          width={200}
-          height={200}
-          placeholder="blur"
-          blurDataURL="/shammall.svg"
-        />
+        <p className="bg-gradient-to-b from-[#c9e7db] to-[#7ba998] bg-clip-text text-transparent text-5xl font-bold">
+          Sham mall
+        </p>
 
         <div className="mt-10 text-white flex flex-col md:flex-row md:justify-center items-center gap-5 mb-5">
           <div className="flex items-center gap-3">
