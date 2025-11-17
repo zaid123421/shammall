@@ -9,7 +9,7 @@ const cairo = Cairo({
 
 export const metadata: Metadata = {
   title: "Shammall",
-  description: "تجربة مبدأيا",
+  description: "Shammall يجمع كل الأسواق في مكان واحد بتجربة شرقية أصيلة. استمتع بتصفح خدماتنا بسهولة عبر التطبيق، مع أقسام متنوعة، تصميم عربي جذاب، سرعة التوصيل وسهولة الدفع.",
   icons: undefined,
 };
 

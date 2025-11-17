@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="relative bg-[#1a1a1a]">
       <div className="flex flex-col items-center justify-center py-12">
         <p className="bg-gradient-to-b from-[#c9e7db] to-[#7ba998] bg-clip-text text-transparent text-5xl font-bold">
-          Sham mall
+          Sham Mall
         </p>
 
         <div className="mt-10 text-white flex flex-col md:flex-row md:justify-center items-center gap-5 mb-5">

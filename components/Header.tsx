@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { LuMenu, LuX } from "react-icons/lu";
-import Image from "next/image";
+// import Image from "next/image";
 
 type Props = {
   activeSection: string;
@@ -22,18 +22,10 @@ export default function Header({ activeSection }: Props) {
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white">
       <nav className="container mx-auto flex flex-row-reverse justify-between items-center py-4 font-semibold px-4 md:px-6">
-        {/* Logo */}
         <div>
-          <Image
-            src="/shammall.svg"
-            alt="Logo"
-            width={150}
-            height={150}
-            priority
-            placeholder="blur"
-            blurDataURL="/shammall.svg"
-            className="transition-transform duration-500"
-          />
+          <p className="bg-gradient-to-b from-[#c9e7db] to-[#7ba998] bg-clip-text text-transparent text-2xl sm:text-4xl font-bold">
+            Sham Mall
+          </p>
         </div>
 
         {/* Desktop Links */}
