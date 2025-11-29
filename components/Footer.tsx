@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -29,9 +28,14 @@ export default function Footer() {
           شام مول جميع الحقوق محفوظة 2025 &copy;
         </p>
 
+      <div className="flex flex-col items-center sm:flex-row sm:gap-3">
         <Link href="/privacy" target="_blank" className="text-[#38BA98] hover:underline mt-3 text-sm">
           سياسة الخصوصية
         </Link>
+        <Link href="/delete-account" target="_blank" className="text-[#38BA98] hover:underline mt-3 text-sm">
+          حذف الحساب
+        </Link>
+      </div>
       </div>
     </footer>
   );
