@@ -3,8 +3,12 @@
 import Link from "next/link";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
+import { TranslationContent } from "@/constants/translations";
+interface ExtendedProps {
+  t: TranslationContent;
+}
 
-export default function Footer() {
+export default function Footer({ t }: ExtendedProps) {
   return (
     <footer className="relative bg-[#1a1a1a]">
       <div className="flex flex-col items-center justify-center py-12">
@@ -25,15 +29,24 @@ export default function Footer() {
         </div>
 
         <p dir="rtl" className="text-white/70 mt-5 font-medium px-5 text-center">
-          شام مول جميع الحقوق محفوظة 2025 &copy;
+          {t.copyright}
         </p>
 
       <div className="flex flex-col items-center sm:flex-row sm:gap-3">
-        <Link href="/privacy" target="_blank" className="text-[#38BA98] hover:underline mt-3 text-sm">
-          سياسة الخصوصية
+        <Link 
+          href={`/privacy`}
+          target="_blank"
+          className="text-[#38BA98] hover:underline mt-3 text-sm"
+        >
+          {t.privacyPolicy}
         </Link>
-        <Link href="/delete-account" target="_blank" className="text-[#38BA98] hover:underline mt-3 text-sm">
-          حذف الحساب
+
+        <Link 
+          href={`/delete-account`}
+          target="_blank"
+          className="text-[#38BA98] hover:underline mt-3 text-sm"
+        >
+          {t.deleteAccount}
         </Link>
       </div>
       </div>

@@ -1,120 +1,119 @@
+'use client';
+
+import { useEffect, useState } from "react";
+import { translations } from "@/constants/translations";
+
 export default function DeleteAccountPage() {
+  const [lang, setLang] = useState<"ar" | "en">(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("app_lang");
+      return (saved === "ar" || saved === "en") ? saved : "ar";
+    }
+    return "ar";
+  });
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!mounted) {
+    return <div className="min-h-screen bg-white" />; 
+  }
+
+  const t = translations[lang];
+  const isAr = lang === 'ar';
+
   return (
-    <main
-      dir="rtl"
-      className="container mx-auto py-16 px-6 text-gray-800 leading-8 text-lg"
-    >
-      <h1 className="text-4xl font-bold text-[#38BA98] mb-8 text-center">
-        حذف الحساب
-      </h1>
+    <div className="flex flex-col min-h-screen">
+      <main 
+        dir={isAr ? "rtl" : "ltr"} 
+        className={`flex-grow pt-32 pb-16 container mx-auto px-6 text-gray-800 leading-8 text-lg ${isAr ? 'text-right' : 'text-left'}`}
+      >
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#38BA98] mb-8 text-center">
+          {t.deleteAccountTitle}
+        </h1>
 
-      <p className="mb-6">
-        نأسف لرغبتكم في حذف حسابكم من{" "}
-        <span className="font-semibold">تطبيق شام مول</span>. نلتزم بمعالجة
-        طلبات الحذف بطريقة آمنة، ونضمن إزالة جميع البيانات المرتبطة بالحساب
-        خلال الفترة المحددة وفقًا لسياسات الخصوصية {" "}
-      </p>
+        <div className="max-w-4xl mx-auto space-y-8">
+          <p className="mb-6">{t.deleteAccountIntro}</p>
 
-      <hr className="my-10 border-gray-300" />
+          <hr className="border-gray-300" />
 
-      <section className="space-y-5">
-        <h2 className="text-2xl font-bold text-[#38BA98]">1. كيفية تقديم طلب حذف الحساب</h2>
-        <p>
-          لإتمام عملية حذف الحساب، يرجى التواصل معنا عبر البريد الإلكتروني
-          الرسمي التالي:
-        </p>
+          {/* 1. كيفية تقديم الطلب */}
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold text-[#38BA98]">{t.howToDelete}</h2>
+            <p>{t.howToDeleteDesc}</p>
+            <p className="flex items-center gap-2 font-semibold">
+              📩 {t.emailLabel}: <a href="mailto:Shammsup@gmail.com" className="text-[#38BA98] hover:underline">Shammsup@gmail.com</a>
+            </p>
+            <div className="mt-4">
+              <p>{t.deleteEmailInstruction}</p>
+              <span className="bg-gray-100 px-3 py-2 rounded font-mono text-sm block mt-2 border-l-4 border-[#38BA98]">
+                {t.deleteEmailSubject}
+              </span>
+            </div>
+          </section>
 
-        <ul className="list-none pr-0 space-y-2">
-          <li>
-            📩 <span className="font-semibold">البريد الإلكتروني:</span>{" "}
-            <a href="mailto:Shammsup@gmail.com" className="text-[#38BA98]">
-              Shammsup@gmail.com
-            </a>
-          </li>
-        </ul>
+          <hr className="border-gray-300" />
 
-        <p className="mt-4">
-          يرجى إرسال الطلب من نفس البريد الإلكتروني المرتبط بحسابكم داخل
-          التطبيق، وكتابة عبارة واضحة مثل:{" "}
-          <span className="bg-gray-100 px-2 py-1 rounded">&quot;أطلب حذف حسابي من تطبيق شام مول&quot;</span>.
-        </p>
-      </section>
+          {/* 2. المعلومات المطلوبة */}
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold text-[#38BA98]">{t.requiredInfoTitle}</h2>
+            <p>{t.requiredInfoDesc}</p>
+            <ul className={`list-disc space-y-1 ${isAr ? 'pr-8' : 'pl-8'}`}>
+              {t.requiredInfoList.map((item, i) => <li key={i}>{item}</li>)}
+            </ul>
+          </section>
 
-      <hr className="my-10 border-gray-300" />
+          <hr className="border-gray-300" />
 
-      <section>
-        <h2 className="text-2xl font-bold text-[#38BA98] mb-4">
-          2. المعلومات المطلوبة لإتمام الحذف
-        </h2>
-        <p>لضمان العملية بشكل صحيح، يرجى تضمين المعلومات التالية داخل الرسالة:</p>
+          {/* 3. ماذا يحدث بعد الإرسال */}
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold text-[#38BA98]">{t.afterDeleteTitle}</h2>
+            <p>{t.afterDeleteDesc}</p>
+            <ul className={`list-disc space-y-1 ${isAr ? 'pr-8' : 'pl-8'}`}>
+              {t.afterDeleteList.map((item, i) => <li key={i}>{item}</li>)}
+            </ul>
+            <p className="mt-4 font-bold text-red-600 p-3 bg-red-50 rounded-lg">
+              ⚠️ {t.afterDeleteWarning}
+            </p>
+          </section>
 
-        <ul className="list-disc pr-6 space-y-1">
-          <li>الاسم الكامل</li>
-          <li>رقم الهاتف المستخدم بالتسجيل</li>
-          <li>سبب الحذف</li>
-        </ul>
-      </section>
+          <hr className="border-gray-300" />
 
-      <hr className="my-10 border-gray-300" />
+          {/* 4. البيانات التي يتم حذفها */}
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold text-[#38BA98]">{t.dataDeletedTitle}</h2>
+            <p>{t.dataDeletedDesc}</p>
+            <ul className={`list-disc space-y-1 ${isAr ? 'pr-8' : 'pl-8'}`}>
+              {t.dataDeletedList.map((item, i) => <li key={i}>{item}</li>)}
+            </ul>
+            <p className="mt-4 italic opacity-80">{t.legalRetention}</p>
+          </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-[#38BA98] mb-4">
-          3. ماذا يحدث بعد إرسال طلب الحذف؟
-        </h2>
-        <p>بعد استلام طلبكم، نقوم بالخطوات التالية:</p>
+          <hr className="border-gray-300" />
 
-        <ul className="list-disc pr-6 space-y-1">
-          <li>التحقق من الهوية لضمان حماية الحساب</li>
-          <li>معالجة الطلب خلال 48 – 72 ساعة</li>
-          <li>حذف جميع بيانات الحساب بشكل نهائي وآمن</li>
-        </ul>
+          {/* 5. التواصل */}
+          <section className="bg-gray-50 p-8 rounded-xl border border-gray-100">
+            <h2 className="text-2xl font-bold text-[#38BA98] mb-4">{t.contactUs}</h2>
+            <div className="space-y-3">
+              <p className="flex items-center gap-2">
+                <span>📩</span> <span className="font-bold">{t.emailLabel}:</span> 
+                <a href="mailto:Shammsup@gmail.com" className="hover:underline text-[#38BA98]">Shammsup@gmail.com</a>
+              </p>
+              <p className="flex items-center gap-2">
+                <span>📞</span> <span className="font-bold">{t.phoneLabel}:</span> 
+                <span dir="ltr">+963 959 746 800</span>
+              </p>
+            </div>
+          </section>
+        </div>
+      </main>
 
-        <p className="mt-4">
-          بعد تنفيذ عملية الحذف، لن تتمكن من استعادة البيانات أو استرجاع الحساب.
-        </p>
-      </section>
-
-      <hr className="my-10 border-gray-300" />
-
-      <section>
-        <h2 className="text-2xl font-bold text-[#38BA98] mb-4">
-          4. البيانات التي يتم حذفها
-        </h2>
-        <p>عند حذف الحساب، يتم إزالة جميع البيانات المتعلقة بالمستخدم، مثل:</p>
-
-        <ul className="list-disc pr-6 space-y-1">
-          <li>معلومات التسجيل (الاسم – البريد – رقم الهاتف)</li>
-          <li>سجل الطلبات والمشتريات</li>
-          <li>عناوين الشحن</li>
-          <li>بيانات المتجر (في حال كان مستخدمًا كبائع)</li>
-          <li>الصور والوثائق المرفوعة</li>
-        </ul>
-
-        <p className="mt-4">
-          لا نحتفظ بأي بيانات بعد اكتمال عملية الحذف، إلا ما تفرضه القوانين
-          المحلية (في حال وجود التزامات محاسبية أو قانونية).
-        </p>
-      </section>
-
-      <hr className="my-10 border-gray-300" />
-
-      <section>
-        <h2 className="text-2xl font-bold text-[#38BA98] mb-4">5. معلومات التواصل</h2>
-        <p>لأي استفسار متعلق بعملية حذف الحساب، يمكنكم التواصل معنا عبر:</p>
-
-        <ul className="list-none pr-0 mt-4 space-y-2">
-          <li>
-            📩 <span className="font-semibold">البريد الإلكتروني:</span>{" "}
-            <a href="mailto:Shammsup@gmail.com" className="text-[#38BA98]">
-              Shammsup@gmail.com
-            </a>
-          </li>
-          <li>
-            📞 <span className="font-semibold">رقم الهاتف:</span>{" "}
-            <span dir="ltr" className="inline-block">+963 959 746 800</span>
-          </li>
-        </ul>
-      </section>
-    </main>
+    </div>
   );
 }
