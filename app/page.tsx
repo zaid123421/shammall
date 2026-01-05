@@ -1,26 +1,31 @@
 "use client";
 
+import { useEffect, useState, useMemo } from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import DownloadSection from "@/components/sections/DownloadSection";
 import FeaturesSection from "@/components/sections/FeaturesSection";
 import HomeSection from "@/components/sections/HomeSection";
 import ShopSection from "@/components/sections/ShopSection";
-import { Translations, translations } from "@/constants/translations";
-
-import { useEffect, useState } from "react";
+import { translations } from "@/constants/translations";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
-  const [lang, setLang] = useState<keyof Translations>("ar");
-  const t = translations[lang];
-  
+  const [lang, setLang] = useState<"ar" | "en">("ar");
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
+    const savedLang = localStorage.getItem("app_lang") as "ar" | "en";
+    setTimeout(() => {
+      if (savedLang && (savedLang === "ar" || savedLang === "en")) {
+        setLang(savedLang);
+      }
+      setIsClient(true);
+    }, 0);
+
     const html = document.documentElement;
     html.style.scrollBehavior = "smooth";
-
     const sections = document.querySelectorAll("section");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -29,26 +34,34 @@ export default function Home() {
       },
       { threshold: 0.6 }
     );
-
     sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
+  const t = useMemo(() => translations[lang], [lang]);
+
+  const handleLangChange = (newLang: "ar" | "en") => {
+    setLang(newLang);
+    localStorage.setItem("app_lang", newLang);
+  };
+
+  if (!isClient) return <div className="min-h-screen bg-white" />;
+
   return (
-    <>
+    <div>
       <Header
         activeSection={activeSection}
         t={t}
         lang={lang}
-        setLang={setLang}/>
-      <HomeSection t={t}/>
-      <ShopSection t={t} id="stores" />
-      <FeaturesSection t={t} id="features" />
-      <DownloadSection t={t} id="transparency" />
+        setLang={handleLangChange}
+      />
+      <main>
+        <HomeSection t={t}/>
+        <ShopSection t={t} id="stores" />
+        <FeaturesSection t={t} id="features" />
+        <DownloadSection t={t} id="transparency" />
+      </main>
       <Footer t={t} />
-    </>
+    </div>
   );
 }

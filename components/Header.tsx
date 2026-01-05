@@ -5,14 +5,14 @@ import { useState } from "react";
 import { LuMenu, LuX, LuLanguages } from "react-icons/lu";
 
 type Props = {
-  activeSection: string;
+  activeSection?: string;
   t: TranslationContent;
   lang: string;
   setLang: (lang: "ar" | "en") => void;
+  simpleMode?: boolean; 
 };
 
-
-export default function Header({ activeSection, t, lang, setLang }: Props) {
+export default function Header({ activeSection, t, lang, setLang, simpleMode = false }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
 
@@ -25,28 +25,28 @@ export default function Header({ activeSection, t, lang, setLang }: Props) {
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-sm">
       <nav className={`container mx-auto flex ${lang === 'ar' ? 'flex-row-reverse' : 'flex-row'} justify-between items-center py-4 font-semibold px-4 md:px-6`}>
-        {/* Logo */}
         <div>
           <p className="bg-gradient-to-b from-[#c9e7db] to-[#7ba998] bg-clip-text text-transparent text-2xl sm:text-4xl font-bold">
             Sham Mall
           </p>
         </div>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-6 px-2">
-          {sections.map((section) => {
-            const isActive = activeSection === section.id;
-            return (
-              <a
-                key={section.id}
-                href={`#${section.id}`}
-                className={`${isActive ? "text-[#189172]" : "text-black"} hover:text-[#189172] duration-300 text-lg`}
-              >
-                {section.label}
-              </a>
-            );
-          })}
-        </div>
+        {!simpleMode && (
+          <div className="hidden md:flex items-center gap-6 px-2">
+            {sections.map((section) => {
+              const isActive = activeSection === section.id;
+              return (
+                <a
+                  key={section.id}
+                  href={`#${section.id}`}
+                  className={`${isActive ? "text-[#189172]" : "text-black"} hover:text-[#189172] duration-300 text-lg`}
+                >
+                  {section.label}
+                </a>
+              );
+            })}
+          </div>
+        )}
 
         <div className={`flex ${lang === 'ar' ? 'flex-row-reverse' : 'flex-row'} items-center gap-3 sm:gap-5`}>
 
@@ -54,9 +54,9 @@ export default function Header({ activeSection, t, lang, setLang }: Props) {
             <button
               onClick={() => setLangMenuOpen(!langMenuOpen)}
               onBlur={() => setTimeout(() => setLangMenuOpen(false), 200)}
-              className={`flex items-center gap-2 border border-gray-300 px-3 py-1.5 rounded-md hover:bg-gray-50 duration-300 text-gray-700 bg-white shadow-sm ${lang === 'ar' ? 'flex-row' : 'flex-row'}`}
+              className="flex items-center gap-2 border border-gray-300 px-3 py-1.5 rounded-md hover:bg-gray-50 duration-300 text-gray-700 bg-white shadow-sm"
             >
-              <LuLanguages className="text-xl text-[#189172]" />
+              <LuLanguages className="text-xl text-[#189172] hidden sm:block" />
               <span className="text-sm uppercase font-extrabold text-black">
                 {lang === "ar" ? "العربية" : "English"}
               </span>
@@ -70,7 +70,6 @@ export default function Header({ activeSection, t, lang, setLang }: Props) {
                 <button
                   onClick={() => {
                     setLang("ar");
-                    localStorage.setItem("app_lang", "ar"); // التخزين هنا
                     setLangMenuOpen(false);
                   }}
                   className={`w-full text-start px-4 py-3 text-sm hover:bg-[#189172] hover:text-white duration-200 flex items-center gap-2 ${lang === 'ar' ? 'bg-gray-50 font-bold text-[#189172]' : 'text-gray-700'}`}
@@ -79,11 +78,9 @@ export default function Header({ activeSection, t, lang, setLang }: Props) {
                   العربية
                 </button>
 
-                {/* زر اللغة الإنجليزية */}
                 <button
                   onClick={() => {
                     setLang("en");
-                    localStorage.setItem("app_lang", "en"); // التخزين هنا
                     setLangMenuOpen(false);
                   }}
                   className={`w-full text-start px-4 py-3 text-sm hover:bg-[#189172] hover:text-white duration-200 flex items-center gap-2 ${lang === 'en' ? 'bg-gray-50 font-bold text-[#189172]' : 'text-gray-700'}`}
@@ -95,37 +92,45 @@ export default function Header({ activeSection, t, lang, setLang }: Props) {
             )}
           </div>
 
-          <button
-            className="bg-[#189172] p-2 px-[10px] text-xs sm:text-base sm:px-[20px]
-            border-2 border-[#189172] rounded-[5px] text-white font-bold cursor-pointer
-            hover:bg-transparent hover:text-[#189172] duration-300 whitespace-nowrap"
-          >
-            {t.downloadBtn}
-          </button>
+          {!simpleMode && (
+            <>
+              <button
+                className="hidden md:block bg-[#189172] p-2 px-[20px] text-base
+                border-2 border-[#189172] rounded-[5px] text-white font-bold cursor-pointer
+                hover:bg-transparent hover:text-[#189172] duration-300 whitespace-nowrap"
+              >
+                {t.downloadBtn}
+              </button>
 
-          <div className="md:hidden relative flex items-center">
-            {menuOpen ? (
-              <LuX className="text-3xl cursor-pointer text-black" onClick={() => setMenuOpen(false)} />
-            ) : (
-              <LuMenu className="text-3xl cursor-pointer text-black" onClick={() => setMenuOpen(true)} />
-            )}
+              <div className="md:hidden relative flex items-center">
+                {menuOpen ? (
+                  <LuX className="text-3xl cursor-pointer text-black" onClick={() => setMenuOpen(false)} />
+                ) : (
+                  <LuMenu className="text-3xl cursor-pointer text-black" onClick={() => setMenuOpen(true)} />
+                )}
 
-            {menuOpen && (
-              <div className={`absolute top-full mt-4 w-48 bg-white flex flex-col items-center shadow-xl border border-gray-100 rounded-xl py-2 ${lang === 'ar' ? 'left-0' : 'right-0'}`}>
-                {sections.map((section) => (
-                  <a
-                    key={section.id}
-                    href={`#${section.id}`}
-                    onClick={() => setMenuOpen(false)}
-                    className="w-full text-center hover:bg-gray-50 hover:text-[#189172] py-3 border-b border-gray-50 last:border-b-0"
-                  >
-                    {section.label}
-                  </a>
-                ))}
+                {menuOpen && (
+                  <div className={`absolute top-full mt-4 w-48 bg-white flex flex-col items-center shadow-xl border border-gray-100 rounded-xl py-4 ${lang === 'ar' ? 'left-0' : 'right-0'}`}>
+                    {sections.map((section) => (
+                      <a
+                        key={section.id}
+                        href={`#${section.id}`}
+                        onClick={() => setMenuOpen(false)}
+                        className="w-full text-center hover:bg-gray-50 hover:text-[#189172] py-3 border-b border-gray-50 last:border-b-0"
+                      >
+                        {section.label}
+                      </a>
+                    ))}
+                    <div className="w-full px-4 mt-2">
+                        <button className="w-full bg-[#189172] py-2 text-sm border-2 border-[#189172] rounded-[5px] text-white font-bold">
+                            {t.downloadBtn}
+                        </button>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-
+            </>
+          )}
         </div>
       </nav>
     </header>

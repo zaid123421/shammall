@@ -24,7 +24,7 @@ export default function Footer({ t }: ExtendedProps) {
           <div className="hidden md:block">|</div>
           <div className="flex items-center gap-3">
             <FaPhoneAlt className="text-xl" />
-            <span className="text-lg">+963 959 746 800</span>
+            <span dir="ltr" className="text-lg">+963 959 746 800</span>
           </div>
         </div>
 

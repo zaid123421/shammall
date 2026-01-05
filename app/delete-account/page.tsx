@@ -2,33 +2,53 @@
 
 import { useEffect, useState } from "react";
 import { translations } from "@/constants/translations";
+import Header from "@/components/Header";
 
 export default function DeleteAccountPage() {
-  const [lang, setLang] = useState<"ar" | "en">(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("app_lang");
-      return (saved === "ar" || saved === "en") ? saved : "ar";
-    }
-    return "ar";
-  });
-
-  const [mounted, setMounted] = useState(false);
+  const [lang, setLang] = useState<"ar" | "en">("en");
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    const savedLang = localStorage.getItem("app_lang") as "ar" | "en";
+    const hasVisited = sessionStorage.getItem("visited_delete_page");
+
     const timer = setTimeout(() => {
-      setMounted(true);
+      let targetLang: "ar" | "en" = "en";
+
+      if (!hasVisited) {
+        targetLang = "en";
+        localStorage.setItem("app_lang", "en");
+        sessionStorage.setItem("visited_delete_page", "true");
+      } else if (savedLang) {
+        targetLang = savedLang;
+      }
+
+      setLang(targetLang);
+      setIsClient(true); 
     }, 0);
+
     return () => clearTimeout(timer);
   }, []);
-
-  if (!mounted) {
-    return <div className="min-h-screen bg-white" />; 
-  }
 
   const t = translations[lang];
   const isAr = lang === 'ar';
 
+  const handleLangChange = (newLang: "ar" | "en") => {
+    setLang(newLang);
+    localStorage.setItem("app_lang", newLang);
+  };
+
+  if (!isClient) {
+    return <div className="min-h-screen bg-white" />;
+  }
   return (
+    <>
+      <Header
+        t={t}
+        lang={lang}
+        setLang={handleLangChange}
+        simpleMode={true} 
+      />
     <div className="flex flex-col min-h-screen">
       <main 
         dir={isAr ? "rtl" : "ltr"} 
@@ -43,7 +63,6 @@ export default function DeleteAccountPage() {
 
           <hr className="border-gray-300" />
 
-          {/* 1. كيفية تقديم الطلب */}
           <section className="space-y-4">
             <h2 className="text-2xl font-bold text-[#38BA98]">{t.howToDelete}</h2>
             <p>{t.howToDeleteDesc}</p>
@@ -60,7 +79,6 @@ export default function DeleteAccountPage() {
 
           <hr className="border-gray-300" />
 
-          {/* 2. المعلومات المطلوبة */}
           <section className="space-y-4">
             <h2 className="text-2xl font-bold text-[#38BA98]">{t.requiredInfoTitle}</h2>
             <p>{t.requiredInfoDesc}</p>
@@ -71,7 +89,6 @@ export default function DeleteAccountPage() {
 
           <hr className="border-gray-300" />
 
-          {/* 3. ماذا يحدث بعد الإرسال */}
           <section className="space-y-4">
             <h2 className="text-2xl font-bold text-[#38BA98]">{t.afterDeleteTitle}</h2>
             <p>{t.afterDeleteDesc}</p>
@@ -85,7 +102,6 @@ export default function DeleteAccountPage() {
 
           <hr className="border-gray-300" />
 
-          {/* 4. البيانات التي يتم حذفها */}
           <section className="space-y-4">
             <h2 className="text-2xl font-bold text-[#38BA98]">{t.dataDeletedTitle}</h2>
             <p>{t.dataDeletedDesc}</p>
@@ -97,23 +113,25 @@ export default function DeleteAccountPage() {
 
           <hr className="border-gray-300" />
 
-          {/* 5. التواصل */}
-          <section className="bg-gray-50 p-8 rounded-xl border border-gray-100">
-            <h2 className="text-2xl font-bold text-[#38BA98] mb-4">{t.contactUs}</h2>
-            <div className="space-y-3">
-              <p className="flex items-center gap-2">
-                <span>📩</span> <span className="font-bold">{t.emailLabel}:</span> 
-                <a href="mailto:Shammsup@gmail.com" className="hover:underline text-[#38BA98]">Shammsup@gmail.com</a>
-              </p>
-              <p className="flex items-center gap-2">
-                <span>📞</span> <span className="font-bold">{t.phoneLabel}:</span> 
-                <span dir="ltr">+963 959 746 800</span>
-              </p>
-            </div>
-          </section>
+            <section className="sm:bg-gray-50 p-2 sm:p-8 sm:rounded-xl sm:border sm:border-gray-100">
+              <h2 className="text-2xl font-boldtext-[#38BA98] mb-4">{t.contactUs}</h2>
+              <div className="space-y-3">
+                <p className="flex flex-col sm:flex-row items-center gap-2 bg-gray-100 rounded-xl sm:bg-transparent">
+                  <span>📩</span>
+                  <span className="font-bold">{t.emailLabel}:</span> 
+                  <a href="mailto:Shammsup@gmail.com" className="hover:underline text-[#38BA98]">Shammsup@gmail.com</a>
+                </p>
+                <p className="flex flex-col sm:flex-row items-center gap-2 bg-gray-100 rounded-xl sm:bg-transparent">
+                  <span>📞</span>
+                  <span className="font-bold">{t.phoneLabel}:</span> 
+                  <span dir="ltr">+963 959 746 800</span>
+                </p>
+              </div>
+            </section>
         </div>
       </main>
 
     </div>
+    </>
   );
 }

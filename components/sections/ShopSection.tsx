@@ -3,9 +3,8 @@
 import { SectionProps } from "@/types/sections";
 import ShopSectionCard from "../ShopSectionCard";
 import { shopSectionData } from "@/data/shop_section_data";
-import { TranslationContent } from "@/constants/translations"; // استيراد النوع
+import { TranslationContent } from "@/constants/translations";
 
-// تحديث الـ Interface ليشمل t
 interface ExtendedSectionProps extends SectionProps {
   t: TranslationContent;
 }
