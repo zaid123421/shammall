@@ -24,9 +24,9 @@ export default function Header({ activeSection, t, lang, setLang, simpleMode = f
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-sm">
-      <nav className={`container mx-auto flex ${lang === 'ar' ? 'flex-row-reverse' : 'flex-row'} justify-between items-center py-4 font-semibold px-4 md:px-6`}>
+      <nav className={`container mx-auto flex ${lang === 'ar' ? 'flex-row-reverse' : 'flex-row'} justify-between items-center py-4 font-semibold px-4 md:px-6 gap-1 sm:gap-4`}>
         <div>
-          <p className="bg-gradient-to-b from-[#c9e7db] to-[#7ba998] bg-clip-text text-transparent text-2xl sm:text-4xl font-bold">
+          <p className="bg-gradient-to-b from-[#c9e7db] to-[#7ba998] bg-clip-text text-transparent text-2xl sm:text-4xl font-bold w-fit sm:min-w-[165px] ">
             Sham Mall
           </p>
         </div>
@@ -39,7 +39,7 @@ export default function Header({ activeSection, t, lang, setLang, simpleMode = f
                 <a
                   key={section.id}
                   href={`#${section.id}`}
-                  className={`${isActive ? "text-[#189172]" : "text-black"} hover:text-[#189172] duration-300 text-lg`}
+                  className={`${isActive ? "text-[#189172]" : "text-black"} hover:text-[#189172] duration-300 text-lg text-center`}
                 >
                   {section.label}
                 </a>
@@ -66,7 +66,7 @@ export default function Header({ activeSection, t, lang, setLang, simpleMode = f
             </button>
 
             {langMenuOpen && (
-              <div className={`absolute top-full mt-2 w-36 bg-white border border-gray-200 rounded-lg shadow-xl z-[60] overflow-hidden ${lang === 'ar' ? 'right-0' : 'left-0'}`}>
+              <div className={`absolute top-full mt-2 w-36 bg-white border border-gray-200 rounded-lg shadow-xl z-[60] overflow-hidden ${lang === 'ar' ? 'right-[-100px]' : 'left-[-50px]'}`}>
                 <button
                   onClick={() => {
                     setLang("ar");
