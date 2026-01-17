@@ -66,19 +66,24 @@ export default function PrivacyPage() {
               <h2 className="text-2xl font-bold text-[#38BA98]">{t.section1}</h2>
               
               <h3 className="text-xl font-semibold border-s-4 border-[#38BA98] px-3">{t.customerInfo}</h3>
+              <p>{t.customerInfoTitle}</p>
               <ul className={`list-disc space-y-1 ${isAr ? 'pr-8' : 'pl-8'}`}>
                 {t.customerData.map((item: string, i: number) => (
                   <li key={i}>{item}</li>
                 ))}
               </ul>
 
+              <hr className="my-10 border-gray-300" />
+
               <h3 className="text-xl font-semibold border-s-4 border-[#38BA98] px-3 mt-6">{t.sellerInfo}</h3>
+              <p>{t.sellerInfoTitle}</p>
               <ul className={`list-disc space-y-1 ${isAr ? 'pr-8' : 'pl-8'}`}>
                 {t.sellerData.map((item: string, i: number) => (
                   <li key={i}>{item}</li>
                 ))}
               </ul>
-              <p className="bg-gray-50 p-4 rounded-md italic text-sm">{t.privacyNote}</p>
+              <p className="bg-gray-50 p-4 rounded-md text-md">{t.privacyNote}</p>
+              <p className="bg-gray-50 p-4 rounded-md text-md">{t.privacyNote2}</p>
             </section>
 
             <hr className="my-10 border-gray-300" />
@@ -97,31 +102,26 @@ export default function PrivacyPage() {
 
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-[#38BA98]">{t.section3}</h2>
-              <p>{t.shareDataIntro}</p>
-              <ul className={`list-disc space-y-1 ${isAr ? 'pr-8' : 'pl-8'}`}>
-                {t.shareDataList.map((item: string, i: number) => (
-                  <li key={i}>{item}</li>
-                ))}
-              </ul>
-              <p className="font-semibold text-[#189172]">{t.noSell}</p>
+              <p className="font-semibold">{t.noSell}</p>
+              <h2 className="font-bold text-xl">{t.sharingNote}</h2>
+
+              <p>{t.sharingNote2}</p>
+              <p>{t.sharingNote3}</p>
             </section>
 
             <hr className="my-10 border-gray-300" />
 
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-[#38BA98]">{t.section4}</h2>
-              <p>{t.protectionText}</p>
+              <p>{t.paymentNote1}</p>
+              <p>{t.paymentNote2}</p>
             </section>
 
             <hr className="my-10 border-gray-300" />
 
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-[#38BA98]">{t.section5}</h2>
-              <ul className={`list-disc space-y-1 ${isAr ? 'pr-8' : 'pl-8'}`}>
-                {t.rightsList.map((item: string, i: number) => (
-                  <li key={i}>{item}</li>
-                ))}
-              </ul>
+              <p>{t.dataProtectionText}</p>
             </section>
 
             <hr className="my-10 border-gray-300" />
@@ -141,21 +141,21 @@ export default function PrivacyPage() {
                   <li key={index}>{permission}</li>
                 ))}
               </ul>
-              <p className="mt-2 opacity-80 italic">{t.permissionsNote}</p>
             </section>
 
             <hr className="my-10 border-gray-300" />
 
-            <section className="space-y-4">
+            {/* <section className="space-y-4">
               <h2 className="text-2xl font-bold text-[#38BA98]">{t.cookiesTitle}</h2>
               <p>{t.cookiesDesc}</p>
-            </section>
+            </section> */}
 
-            <hr className="my-10 border-gray-300" />
+            {/* <hr className="my-10 border-gray-300" /> */}
 
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-[#38BA98]">{t.childrenPrivacyTitle}</h2>
               <p>{t.childrenPrivacyDesc}</p>
+              <p>{t.childrenPrivacyDesc2}</p>
             </section>
 
             <hr className="my-10 border-gray-300" />
@@ -165,7 +165,9 @@ export default function PrivacyPage() {
               <p>{t.policyChangesDesc}</p>
             </section>
 
-            <section className="sm:bg-gray-50 p-2 sm:p-8 sm:rounded-xl sm:border sm:border-gray-100">
+            <hr className="my-10 border-gray-300" />
+
+            <section className="space-y-4">
               <h2 className="text-2xl font-bold text-[#38BA98] mb-4">{t.contactUs}</h2>
               <div className="space-y-3">
                 <div className="flex flex-col sm:flex-row items-center gap-2 bg-gray-50 p-3 rounded-lg sm:bg-transparent">
