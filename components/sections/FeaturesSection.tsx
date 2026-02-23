@@ -45,13 +45,16 @@ export default function FeaturesSection({ id, t }: ExtendedProps) {
               </div>
             ))}
 
-            <button
-              className="bg-[#189172] p-2 px-[5px] text-sm sm:text-lg sm:px-[50px]
-              border-2 border-[#189172] rounded-[5px] text-white font-bold cursor-pointer
-              hover:bg-transparent hover:text-[#189172] duration-300 mt-10"
+            <a
+              href="https://play.google.com/store/apps/details?id=com.shammall.ecommerce_app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#189172] p-2 px-[5px] text-sm sm:text-lg sm:px-[50px] 
+                border-2 border-[#189172] rounded-[5px] text-white font-bold cursor-pointer 
+                hover:bg-transparent hover:text-[#189172] duration-300 mt-10 text-center"
             >
               {t.downloadNow}
-            </button>
+            </a>
           </div>
         </div>
 
