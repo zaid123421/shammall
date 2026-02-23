@@ -128,9 +128,14 @@ export default function Header({ activeSection, t, lang, setLang, simpleMode = f
                       </a>
                     ))}
                     <div className="w-full px-4 mt-2">
-                        <button className="w-full bg-[#189172] py-2 text-sm border-2 border-[#189172] rounded-[5px] text-white font-bold">
-                            {t.downloadBtn}
-                        </button>
+                      <a 
+                        href="https://play.google.com/store/apps/details?id=com.shammall.ecommerce_app" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-full bg-[#189172] py-2 text-sm border-2 border-[#189172] rounded-[5px] text-white font-bold inline-block text-center"
+                      >
+                        {t.downloadBtn}
+                      </a>
                     </div>
                   </div>
                 )}
