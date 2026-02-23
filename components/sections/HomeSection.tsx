@@ -32,6 +32,7 @@ export default function HomeSection({ t }: Props) {
           alt="google_play"
           smallText={t.getItOn}
           mainText="Google Play"
+          href="https://play.google.com/store/apps/details?id=com.shammall.ecommerce_app"
         />
 
         <StoreCard
@@ -39,6 +40,7 @@ export default function HomeSection({ t }: Props) {
           alt="apple"
           smallText={t.downloadFrom}
           mainText="Apple Store"
+          href=""
         />
       </div>
 

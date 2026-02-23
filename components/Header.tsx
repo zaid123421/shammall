@@ -94,13 +94,19 @@ export default function Header({ activeSection, t, lang, setLang, simpleMode = f
 
           {!simpleMode && (
             <>
-              <button
-                className="hidden md:block bg-[#189172] p-2 px-[20px] text-base
-                border-2 border-[#189172] rounded-[5px] text-white font-bold cursor-pointer
-                hover:bg-transparent hover:text-[#189172] duration-300 whitespace-nowrap"
+              <a 
+                href="https://play.google.com/store/apps/details?id=com.shammall.ecommerce_app" 
+                target="_blank" 
+                rel="noopener noreferrer"
               >
-                {t.downloadBtn}
-              </button>
+                <button
+                  className="hidden md:block bg-[#189172] p-2 px-[20px] text-base
+                  border-2 border-[#189172] rounded-[5px] text-white font-bold cursor-pointer
+                  hover:bg-transparent hover:text-[#189172] duration-300 whitespace-nowrap"
+                >
+                  {t.downloadBtn}
+                </button>
+              </a>
 
               <div className="md:hidden relative flex items-center">
                 {menuOpen ? (

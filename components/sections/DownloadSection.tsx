@@ -43,6 +43,7 @@ export default function DownloadSection({ id, t }: ExtendedProps) {
           alt="google_play"
           smallText={t.getItOn}
           mainText="Google Play"
+          href="https://play.google.com/store/apps/details?id=com.shammall.ecommerce_app"
         />
 
         <StoreCard
@@ -50,6 +51,7 @@ export default function DownloadSection({ id, t }: ExtendedProps) {
           alt="apple"
           smallText={t.downloadFrom}
           mainText="Apple Store"
+          href=""
         />
       </div>
     </section>
